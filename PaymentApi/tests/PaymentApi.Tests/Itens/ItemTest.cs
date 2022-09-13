@@ -5,14 +5,14 @@
         private readonly Item expectedItem;
         public ItemTest()
         {
-            expectedItem = new(1, "Wallet", 2);
+            expectedItem = new(1, "Carteira", 2);
         }
 
 
         [Fact]
-        public void ShouldCreateSeller()
+        public void ShouldCreateItem()
         {
-            var item = new Item(1, "Wallet", 2);
+            Item item = new(1, "Carteira", 2);
 
             item.Should().BeEquivalentTo(expectedItem);
         }

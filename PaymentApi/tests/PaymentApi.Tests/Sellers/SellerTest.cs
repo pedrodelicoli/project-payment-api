@@ -12,7 +12,7 @@
         [Fact]
         public void ShouldCreateSeller()
         {
-            var seller = new Seller(1, "376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
+            Seller seller = new(1, "376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
 
             seller.Should().BeEquivalentTo(expectedSeller);
         }
