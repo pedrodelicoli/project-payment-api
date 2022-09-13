@@ -14,7 +14,6 @@
         {
             var seller = new Seller(1, "376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
 
-            seller.Should().NotBeNull();
             seller.Should().BeEquivalentTo(expectedSeller);
         }
     }
