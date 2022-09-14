@@ -13,12 +13,12 @@
         [Fact]
         public void ShouldAddSale()
         {
-            Seller seller = new(1, "376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
+            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
             List<Item> itens = new()
             {
-                new Item(1, "Carteira", 2)
+                new Item("Carteira", 2)
             };
-            Sale sale = new(1, DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
+            Sale sale = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
 
             saleRepositoryMock.Setup((s) => s.Create(sale)).Returns(sale);
 
