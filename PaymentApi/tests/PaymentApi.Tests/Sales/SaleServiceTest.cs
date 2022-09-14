@@ -6,22 +6,25 @@ namespace PaymentApi.Tests.Sales
     {
         private readonly SaleService saleService;
         private readonly Mock<ISaleRepository> saleRepositoryMock;
+
+        private Seller seller;
+        private List<Item> itens;
+        private Sale sale;
         public SaleServiceTest()
         {
             saleRepositoryMock = new Mock<ISaleRepository>();
             saleService = new(saleRepositoryMock.Object);
+            seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
+            itens = new()
+            {
+                new Item("Carteira", 2)
+            };
+            sale = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
         }
 
         [Fact]
         public void ShouldAddSale()
         {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
-
             saleRepositoryMock.Setup((s) => s.Create(sale)).Returns(sale);
 
             Sale result = saleService.Create(sale);
@@ -32,16 +35,8 @@ namespace PaymentApi.Tests.Sales
 
         [Fact]
         public void ShouldGetSaleById()
-        {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
-
+        {            
             saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
-
 
             Sale result = saleService.GetById(1);
 
@@ -53,15 +48,10 @@ namespace PaymentApi.Tests.Sales
         [InlineData(SaleStatus.PagamentoAprovado)]
         [InlineData(SaleStatus.Cancelada)]
         public void ShouldUpdateSaleStatus_WhenCurrentStatusAguardadandoPagamento(SaleStatus saleStatus)
-        {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
+        {            
+            Sale saleTest = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
 
-            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
 
             Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
 
@@ -78,15 +68,10 @@ namespace PaymentApi.Tests.Sales
         [InlineData(SaleStatus.EnviadoTransportadora)]
         [InlineData(SaleStatus.Entregue)]
         public void ShouldThrowsException_WhenTryUpdateCurrentStatusAguardadandoPagamento(SaleStatus saleStatus)
-        {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
+        {            
+            Sale saleTest = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
 
-            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
 
             Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
 
@@ -101,14 +86,9 @@ namespace PaymentApi.Tests.Sales
         [InlineData(SaleStatus.Cancelada)]
         public void ShouldUpdateSaleStatus_WhenCurrentStatusPagamentoAprovado(SaleStatus saleStatus)
         {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.PagamentoAprovado, seller, itens);
+            Sale saleTest = new(DateTime.Now, SaleStatus.PagamentoAprovado, seller, itens);
 
-            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
 
             Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
 
@@ -126,14 +106,9 @@ namespace PaymentApi.Tests.Sales
         [InlineData(SaleStatus.AguardandoPagamento)]
         public void ShouldThrowsException_WhenTryUpdateCurrentStatusPagamentoAprovado(SaleStatus saleStatus)
         {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.PagamentoAprovado, seller, itens);
+            Sale saleTest = new(DateTime.Now, SaleStatus.PagamentoAprovado, seller, itens);
 
-            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
 
             Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
 
@@ -146,14 +121,9 @@ namespace PaymentApi.Tests.Sales
         [Fact]        
         public void ShouldUpdateSaleStatus_WhenCurrentStatusEnviadoTransportador()
         {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.EnviadoTransportadora, seller, itens);
+            Sale saleTest = new(DateTime.Now, SaleStatus.EnviadoTransportadora, seller, itens);
 
-            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
 
             Sale updatedSale = new(DateTime.Now, SaleStatus.Entregue, seller, itens);
 
@@ -171,15 +141,10 @@ namespace PaymentApi.Tests.Sales
         [InlineData(SaleStatus.PagamentoAprovado)]
         [InlineData(SaleStatus.Cancelada)]
         public void ShouldThrowsException_WhenTryUpdateCurrentStatusEnviadoTransportador(SaleStatus saleStatus)
-        {
-            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
-            List<Item> itens = new()
-            {
-                new Item("Carteira", 2)
-            };
-            Sale sale = new(DateTime.Now, SaleStatus.EnviadoTransportadora, seller, itens);
+        {            
+            Sale saleTest = new(DateTime.Now, SaleStatus.EnviadoTransportadora, seller, itens);
 
-            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
 
             Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
 
