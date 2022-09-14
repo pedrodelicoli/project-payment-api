@@ -16,5 +16,10 @@
             Email = email;
             PhoneNumber = phoneNumber;
         }
+
+        public Seller()
+        {
+
+        }
     }
 }

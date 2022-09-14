@@ -16,5 +16,10 @@
             Seller = seller;
             Itens = itens;
         }
+
+        public Sale()
+        {
+
+        }
     }
 }

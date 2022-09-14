@@ -12,5 +12,10 @@
             Name = name;
             Quantity = quantity;
         }
+
+        public Item()
+        {
+
+        }
     }
 }

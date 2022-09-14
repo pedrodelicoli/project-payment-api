@@ -1,12 +1,12 @@
 ﻿namespace PaymentApi.Tests.Sales
 {
-    public class SalesTest
+    public class SaleTest
     {
         private readonly Sale expectedSale;
         private readonly Seller expectedSeller;
         private readonly List<Item> expectedItens;
         private readonly DateTime saleTime = DateTime.Now;
-        public SalesTest()
+        public SaleTest()
         {
             expectedSeller = new(1, "376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
             expectedItens =  new()
