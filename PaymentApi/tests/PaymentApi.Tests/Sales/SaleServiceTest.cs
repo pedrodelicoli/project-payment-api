@@ -52,7 +52,7 @@ namespace PaymentApi.Tests.Sales
         [Theory]
         [InlineData(SaleStatus.PagamentoAprovado)]
         [InlineData(SaleStatus.Cancelada)]
-        public void ShouldUpdateSaleStatus_WhenCurrentStatusAguardadandoPagamento_Success(SaleStatus saleStatus)
+        public void ShouldUpdateSaleStatus_WhenCurrentStatusAguardadandoPagamento(SaleStatus saleStatus)
         {
             Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
             List<Item> itens = new()
@@ -94,6 +94,53 @@ namespace PaymentApi.Tests.Sales
              
             Assert.Throws<Exception>(() => saleService.Update(1, saleStatus))
                 .Message.Should().Be($"Não é permitido atualizar de Aguardando Pagamento para {saleStatus}");
+        }
+
+        [Theory]
+        [InlineData(SaleStatus.EnviadoTransportadora)]
+        [InlineData(SaleStatus.Cancelada)]
+        public void ShouldUpdateSaleStatus_WhenCurrentStatusPagamentoAprovado(SaleStatus saleStatus)
+        {
+            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
+            List<Item> itens = new()
+            {
+                new Item("Carteira", 2)
+            };
+            Sale sale = new(DateTime.Now, SaleStatus.PagamentoAprovado, seller, itens);
+
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+
+            Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
+
+            saleRepositoryMock.Setup((s) => s.Update(It.IsAny<Sale>())).Returns(updatedSale);
+
+            Sale result = saleService.Update(1, saleStatus);
+
+            result.Should().BeEquivalentTo(updatedSale);
+            saleRepositoryMock.Verify((s) => s.GetById(It.IsAny<int>()), Times.Once);
+            saleRepositoryMock.Verify((s) => s.Update(It.IsAny<Sale>()), Times.Once);
+        }
+
+        [Theory]
+        [InlineData(SaleStatus.Entregue)]
+        [InlineData(SaleStatus.AguardandoPagamento)]
+        public void ShouldThrowsException_WhenTryUpdateCurrentStatusPagamentoAprovado(SaleStatus saleStatus)
+        {
+            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
+            List<Item> itens = new()
+            {
+                new Item("Carteira", 2)
+            };
+            Sale sale = new(DateTime.Now, SaleStatus.PagamentoAprovado, seller, itens);
+
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+
+            Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
+
+            saleRepositoryMock.Setup((s) => s.Update(It.IsAny<Sale>())).Returns(updatedSale);
+
+            Assert.Throws<Exception>(() => saleService.Update(1, saleStatus))
+                .Message.Should().Be($"Não é permitido atualizar de Pagamento Aprovado para {saleStatus}");
         }
 
         public class SaleService : ISaleService
