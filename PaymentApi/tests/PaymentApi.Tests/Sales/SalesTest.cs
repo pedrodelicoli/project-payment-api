@@ -1,8 +1,4 @@
-﻿using PaymentApi.Tests.Itens;
-using PaymentApi.Tests.Vendedores;
-using System.ComponentModel.DataAnnotations;
-
-namespace PaymentApi.Tests.Sales
+﻿namespace PaymentApi.Tests.Sales
 {
     public class SalesTest
     {
@@ -33,41 +29,5 @@ namespace PaymentApi.Tests.Sales
 
             sale.Should().BeEquivalentTo(expectedSale);
         }
-    }
-
-    public class Sale
-    {
-        public int Id { get; set; }
-        public DateTime SaleTime { get; set; }
-        public SaleStatus Status { get; set; }
-        public Seller Seller { get; set; }
-        public List<Item> Itens { get; set; }
-
-        public Sale(int id, DateTime saleTime, SaleStatus status, Seller seller, List<Item> itens)
-        {
-            Id = id;
-            SaleTime = saleTime;
-            Status = status;
-            Seller = seller;
-            Itens = itens;
-        }
-    }
-
-    public enum SaleStatus
-    {
-        [Display(Name = "Aguardando Pagamento")] 
-        AguardandoPagamento, 
-
-        [Display(Name = "Pagamento Aprovado")] 
-        PagamentoAprovado,
-        
-        [Display(Name = "Enviado para Transportadora")] 
-        EnviadoTransportadora, 
-
-        [Display(Name = "Entregue")] 
-        Entregue,
-        
-        [Display(Name = "Cancelada")] 
-        Cancelada,
-    }
+    }   
 }
