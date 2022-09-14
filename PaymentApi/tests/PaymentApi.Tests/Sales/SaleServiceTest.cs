@@ -28,6 +28,25 @@
             saleRepositoryMock.Verify((s) => s.Create(It.IsAny<Sale>()), Times.Once);
         }
 
+        [Fact]
+        public void ShouldGetSaleById()
+        {
+            Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
+            List<Item> itens = new()
+            {
+                new Item("Carteira", 2)
+            };
+            Sale sale = new(DateTime.Now, SaleStatus.AguardandoPagamento, seller, itens);
+
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(sale);
+
+
+            Sale result = saleService.GetById(1);
+
+            result.Should().BeEquivalentTo(sale);
+            saleRepositoryMock.Verify((s) => s.GetById(It.IsAny<int>()), Times.Once);
+        }
+
         public class SaleService : ISaleService
         {
             private readonly ISaleRepository saleRepository;
