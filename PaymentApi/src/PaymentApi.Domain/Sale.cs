@@ -1,18 +1,16 @@
 ﻿using PaymentApi.Domain.Exceptions;
-using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace PaymentApi.Domain
 {
     public class Sale
     {
         [Key]
-        public int Id { get; set; }
-        public DateTime SaleTime { get; set; }
-        public SaleStatus Status { get; set; }
-        public Seller Seller { get; set; }
-        public List<Item> Itens { get; set; }
+        public int Id { get; private set; }
+        public DateTime SaleTime { get; private set; }
+        public SaleStatus Status { get; private set; }
+        public Seller Seller { get; private set; }
+        public List<Item> Itens { get; private set; }
 
         public Sale(DateTime saleTime, SaleStatus status, Seller seller, List<Item> itens)
         {
@@ -29,6 +27,18 @@ namespace PaymentApi.Domain
         public Sale()
         {
 
+        }
+
+        public void UpdateStatus(SaleStatus saleStatus)
+        {
+            CheckIfStatusChangeIsValid(saleStatus);
+            Status = saleStatus;           
+        }
+
+        private void CheckIfStatusChangeIsValid(SaleStatus saleStatus)
+        {
+            if (Status == SaleStatus.AguardandoPagamento && (saleStatus == SaleStatus.EnviadoTransportadora || saleStatus == SaleStatus.Entregue))
+                throw new Exception($"Não é permitido atualizar de Aguardando Pagamento para {saleStatus}");
         }
     }
 }
