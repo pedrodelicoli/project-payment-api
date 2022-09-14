@@ -41,6 +41,8 @@ namespace PaymentApi.Domain
                 throw new Exception($"Não é permitido atualizar de Aguardando Pagamento para {saleStatus}");
             if (Status == SaleStatus.PagamentoAprovado && (saleStatus == SaleStatus.Entregue || saleStatus == SaleStatus.AguardandoPagamento))
                 throw new Exception($"Não é permitido atualizar de Pagamento Aprovado para {saleStatus}");
+            if (Status == SaleStatus.EnviadoTransportadora && (saleStatus == SaleStatus.AguardandoPagamento || saleStatus == SaleStatus.PagamentoAprovado || saleStatus == SaleStatus.Cancelada))
+                throw new Exception($"Não é permitido atualizar de Enviado para Transportadora para {saleStatus}");
         }
     }
 }
