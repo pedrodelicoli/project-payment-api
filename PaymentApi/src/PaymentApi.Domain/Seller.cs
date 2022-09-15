@@ -6,11 +6,11 @@ namespace PaymentApi.Domain
     public class Seller
     {
         [Key]
-        public int Id { get; set; }
-        public string Cpf { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public int Id { get; private set; }
+        public string Cpf { get; private set; }
+        public string Name { get; private set; }
+        public string Email { get; private set; }
+        public string PhoneNumber { get; private set; }
 
         public Seller(string cpf, string name, string email, string phoneNumber)
         {

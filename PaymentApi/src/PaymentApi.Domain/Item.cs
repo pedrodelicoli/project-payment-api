@@ -6,9 +6,9 @@ namespace PaymentApi.Domain
     public class Item
     {
         [Key]
-        public int Id { get; set; }        
-        public string Name { get; set; }
-        public int Quantity { get; set; }
+        public int Id { get; private set; }        
+        public string Name { get; private set; }
+        public int Quantity { get; private set; }
 
         public Item(string name, int quantity)
         {
