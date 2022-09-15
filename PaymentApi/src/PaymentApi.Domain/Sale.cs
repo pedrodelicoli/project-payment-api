@@ -38,11 +38,11 @@ namespace PaymentApi.Domain
         private void CheckIfStatusChangeIsValid(SaleStatus saleStatus)
         {
             if (Status == SaleStatus.AguardandoPagamento && (saleStatus == SaleStatus.EnviadoTransportadora || saleStatus == SaleStatus.Entregue))
-                throw new Exception($"Não é permitido atualizar de Aguardando Pagamento para {saleStatus}");
+                throw new Exception(string.Format(ErrorMessage.errorAguardandoPagamento, saleStatus));
             if (Status == SaleStatus.PagamentoAprovado && (saleStatus == SaleStatus.Entregue || saleStatus == SaleStatus.AguardandoPagamento))
-                throw new Exception($"Não é permitido atualizar de Pagamento Aprovado para {saleStatus}");
+                throw new Exception(string.Format(ErrorMessage.errorPagamentoAprovado, saleStatus));
             if (Status == SaleStatus.EnviadoTransportadora && (saleStatus == SaleStatus.AguardandoPagamento || saleStatus == SaleStatus.PagamentoAprovado || saleStatus == SaleStatus.Cancelada))
-                throw new Exception($"Não é permitido atualizar de Enviado para Transportadora para {saleStatus}");
+                throw new Exception(string.Format(ErrorMessage.errorEnviadoTransportadora, saleStatus));
         }
     }
 }

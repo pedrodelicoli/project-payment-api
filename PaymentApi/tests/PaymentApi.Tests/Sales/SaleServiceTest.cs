@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaymentApi.Domain.Exceptions;
+using System;
 
 namespace PaymentApi.Tests.Sales
 {
@@ -78,7 +79,7 @@ namespace PaymentApi.Tests.Sales
             saleRepositoryMock.Setup((s) => s.Update(It.IsAny<Sale>())).Returns(updatedSale);
              
             Assert.Throws<Exception>(() => saleService.Update(1, saleStatus))
-                .Message.Should().Be($"Não é permitido atualizar de Aguardando Pagamento para {saleStatus}");
+                .Message.Should().Be(string.Format(ErrorMessage.errorAguardandoPagamento, saleStatus));
         }
 
         [Theory]
@@ -115,7 +116,7 @@ namespace PaymentApi.Tests.Sales
             saleRepositoryMock.Setup((s) => s.Update(It.IsAny<Sale>())).Returns(updatedSale);
 
             Assert.Throws<Exception>(() => saleService.Update(1, saleStatus))
-                .Message.Should().Be($"Não é permitido atualizar de Pagamento Aprovado para {saleStatus}");
+                .Message.Should().Be(string.Format(ErrorMessage.errorPagamentoAprovado, saleStatus));
         }
 
         [Fact]        
@@ -151,7 +152,7 @@ namespace PaymentApi.Tests.Sales
             saleRepositoryMock.Setup((s) => s.Update(It.IsAny<Sale>())).Returns(updatedSale);
 
             Assert.Throws<Exception>(() => saleService.Update(1, saleStatus))
-                .Message.Should().Be($"Não é permitido atualizar de Enviado para Transportadora para {saleStatus}");
+                .Message.Should().Be(string.Format(ErrorMessage.errorEnviadoTransportadora, saleStatus));
         }
 
         public class SaleService : ISaleService
