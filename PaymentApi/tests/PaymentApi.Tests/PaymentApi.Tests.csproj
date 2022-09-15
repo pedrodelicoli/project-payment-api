@@ -24,7 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\PaymentApi.Application\PaymentApi.Application.csproj" />
     <ProjectReference Include="..\..\src\PaymentApi.Domain\PaymentApi.Domain.csproj" />
+    <ProjectReference Include="..\..\src\PaymentApi.Repository\PaymentApi.Repository.csproj" />
   </ItemGroup>
 
 </Project>

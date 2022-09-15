@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentApi.Tests", "tests\PaymentApi.Tests\PaymentApi.Tests.csproj", "{DC680645-671D-4944-BDCE-1297C336C742}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentApi.Tests", "tests\PaymentApi.Tests\PaymentApi.Tests.csproj", "{DC680645-671D-4944-BDCE-1297C336C742}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentApi.Domain", "src\PaymentApi.Domain\PaymentApi.Domain.csproj", "{58C8F85E-12F9-4C09-A918-FFE6B530D895}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentApi.Domain", "src\PaymentApi.Domain\PaymentApi.Domain.csproj", "{58C8F85E-12F9-4C09-A918-FFE6B530D895}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentApi.Repository", "src\PaymentApi.Repository\PaymentApi.Repository.csproj", "{A9FE28F7-04CB-4383-A9C0-B453BAABDD1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentApi.Application", "src\PaymentApi.Application\PaymentApi.Application.csproj", "{F5F1D67C-4386-4878-BA50-41E5A9D537FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{58C8F85E-12F9-4C09-A918-FFE6B530D895}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58C8F85E-12F9-4C09-A918-FFE6B530D895}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58C8F85E-12F9-4C09-A918-FFE6B530D895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9FE28F7-04CB-4383-A9C0-B453BAABDD1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9FE28F7-04CB-4383-A9C0-B453BAABDD1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9FE28F7-04CB-4383-A9C0-B453BAABDD1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9FE28F7-04CB-4383-A9C0-B453BAABDD1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F1D67C-4386-4878-BA50-41E5A9D537FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F1D67C-4386-4878-BA50-41E5A9D537FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F1D67C-4386-4878-BA50-41E5A9D537FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F1D67C-4386-4878-BA50-41E5A9D537FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,6 @@
-﻿using PaymentApi.Domain.Exceptions;
+﻿using PaymentApi.Application;
+using PaymentApi.Domain.Exceptions;
+using PaymentApi.Repository.Interfaces;
 using System;
 
 namespace PaymentApi.Tests.Sales
@@ -172,64 +174,6 @@ namespace PaymentApi.Tests.Sales
 
             Assert.Throws<Exception>(() => saleService.Update(1, saleStatus))
                 .Message.Should().Be(string.Format(ErrorMessage.errorCancelada, saleStatus));
-        }
-
-        public class SaleService : ISaleService
-        {
-            private readonly ISaleRepository saleRepository;
-
-            public SaleService(ISaleRepository saleRepository)
-            {
-                this.saleRepository = saleRepository;
-            }
-
-            public Sale Create(Sale sale) => saleRepository.Create(sale);
-
-            public Sale GetById(int id) => saleRepository.GetById(id);
-
-            public Sale Update(int id, SaleStatus saleStatus)
-            {                
-                Sale sale = saleRepository.GetById(id);
-                sale.UpdateStatus(saleStatus);
-                return saleRepository.Update(sale);
-            }            
-        }
-
-        public interface ISaleService
-        {
-            Sale Create(Sale sale);
-
-            Sale GetById(int id);
-
-            Sale Update(int id, SaleStatus saleStatus);
-
-        }
-
-        public class SaleRepository : ISaleRepository
-        {
-            public Sale Create(Sale sale)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Sale GetById(int id)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Sale Update(Sale sale)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public interface ISaleRepository
-        {
-            Sale Create(Sale sale);
-
-            Sale GetById(int id);
-
-            Sale Update(Sale sale);
         }
     }
 }
