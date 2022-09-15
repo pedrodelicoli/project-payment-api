@@ -155,6 +155,25 @@ namespace PaymentApi.Tests.Sales
                 .Message.Should().Be(string.Format(ErrorMessage.errorEnviadoTransportadora, saleStatus));
         }
 
+        [Theory]
+        [InlineData(SaleStatus.AguardandoPagamento)]
+        [InlineData(SaleStatus.PagamentoAprovado)]
+        [InlineData(SaleStatus.EnviadoTransportadora)]
+        [InlineData(SaleStatus.Entregue)]
+        public void ShouldThrowsException_WhenTryUpdateCurrentStatusCancelada(SaleStatus saleStatus)
+        {
+            Sale saleTest = new(DateTime.Now, SaleStatus.Cancelada, seller, itens);
+
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
+
+            Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
+
+            saleRepositoryMock.Setup((s) => s.Update(It.IsAny<Sale>())).Returns(updatedSale);
+
+            Assert.Throws<Exception>(() => saleService.Update(1, saleStatus))
+                .Message.Should().Be(string.Format(ErrorMessage.errorCancelada, saleStatus));
+        }
+
         public class SaleService : ISaleService
         {
             private readonly ISaleRepository saleRepository;

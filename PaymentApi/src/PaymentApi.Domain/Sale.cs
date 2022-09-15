@@ -43,6 +43,8 @@ namespace PaymentApi.Domain
                 throw new Exception(string.Format(ErrorMessage.errorPagamentoAprovado, saleStatus));
             if (Status == SaleStatus.EnviadoTransportadora && (saleStatus == SaleStatus.AguardandoPagamento || saleStatus == SaleStatus.PagamentoAprovado || saleStatus == SaleStatus.Cancelada))
                 throw new Exception(string.Format(ErrorMessage.errorEnviadoTransportadora, saleStatus));
+            if (Status == SaleStatus.Cancelada && saleStatus != SaleStatus.Cancelada)
+                throw new Exception(string.Format(ErrorMessage.errorCancelada, saleStatus));
         }
     }
 }
