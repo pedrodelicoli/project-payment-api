@@ -1,14 +1,15 @@
-﻿using PaymentApi.Domain;
+﻿using PaymentApi.Application.Dto;
+using PaymentApi.Domain;
 
 namespace PaymentApi.Application.Interfaces
 {
     public interface ISaleService
     {
-        Sale Create(Sale sale);
+        SaleDto Create(CreateSaleDto sale);
 
-        Sale GetById(int id);
+        SaleDto GetById(int id);
 
-        Sale Update(int id, SaleStatus saleStatus);
+        SaleDto Update(int id, UpdateSaleDto updateSaleDto);
 
     }
 }

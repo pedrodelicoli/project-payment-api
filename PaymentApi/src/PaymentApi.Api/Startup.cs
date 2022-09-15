@@ -20,6 +20,7 @@ namespace PaymentApi.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataBaseContext>((opt) => opt.UseInMemoryDatabase("PaymentApiData"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ISaleService, SaleService>();
             services.AddScoped<ISaleRepository, SaleRepository>();
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using PaymentApi.Application.Dto;
 using PaymentApi.Application.Interfaces;
-using PaymentApi.Domain;
 
 namespace PaymentApi.Api.Controllers
 {
@@ -25,7 +25,7 @@ namespace PaymentApi.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Sale sale)
+        public IActionResult Post([FromBody] CreateSaleDto sale)
         {
             try
             {
@@ -33,16 +33,16 @@ namespace PaymentApi.Api.Controllers
                 return Ok(createdSale);
             } catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ex.InnerException?.Message);
             }
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] SaleStatus saleStatus)
+        public IActionResult Put(int id, [FromBody] UpdateSaleDto updateSaleDto)
         {
             try
             {
-                var updatedSale = saleService.Update(id, saleStatus);
+                var updatedSale = saleService.Update(id, updateSaleDto);
                 return Ok(updatedSale);
             }
             catch (Exception ex)

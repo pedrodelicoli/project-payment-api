@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentApi.Repository", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentApi.Application", "src\PaymentApi.Application\PaymentApi.Application.csproj", "{F5F1D67C-4386-4878-BA50-41E5A9D537FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentApi.Api", "src\PaymentApi.Api\PaymentApi.Api.csproj", "{0120DCCE-7AFC-484E-B717-BC9CDDFE8AB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F5F1D67C-4386-4878-BA50-41E5A9D537FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5F1D67C-4386-4878-BA50-41E5A9D537FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5F1D67C-4386-4878-BA50-41E5A9D537FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0120DCCE-7AFC-484E-B717-BC9CDDFE8AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0120DCCE-7AFC-484E-B717-BC9CDDFE8AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0120DCCE-7AFC-484E-B717-BC9CDDFE8AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0120DCCE-7AFC-484E-B717-BC9CDDFE8AB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

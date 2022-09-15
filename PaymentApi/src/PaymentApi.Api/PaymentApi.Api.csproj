@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PaymentApi.Application\PaymentApi.Application.csproj" />
-    <ProjectReference Include="..\PaymentApi.Domain\PaymentApi.Domain.csproj" />
   </ItemGroup>
 
 </Project>
