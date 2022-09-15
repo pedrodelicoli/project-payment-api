@@ -10,9 +10,8 @@ namespace PaymentApi.Application.Dto
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
-        public SellerDto(int id, string cpf, string name, string email, string phoneNumber)
+        public SellerDto( string cpf, string name, string email, string phoneNumber)
         {
-            Id = id;
             Cpf = cpf;
             Name = name;
             Email = email;

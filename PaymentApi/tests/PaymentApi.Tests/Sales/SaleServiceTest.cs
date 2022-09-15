@@ -42,7 +42,7 @@ namespace PaymentApi.Tests.Sales
 
             saleDto = new(DateTime.Now, SaleStatus.AguardandoPagamento, sellerDto, itensDto);
 
-            createSaleDto = new(DateTime.Now, SaleStatus.AguardandoPagamento, sellerDto, itensDto);
+            createSaleDto = new(DateTime.Now, sellerDto, itensDto);
         }
 
         [Fact]

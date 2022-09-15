@@ -8,9 +8,8 @@ namespace PaymentApi.Application.Dto
         public string Name { get; set; }
         public int Quantity { get; set; }
 
-        public ItemDto(int id, string name, int quantity)
+        public ItemDto(string name, int quantity)
         {
-            Id = id;
             Name = name;
             Quantity = quantity;
         }

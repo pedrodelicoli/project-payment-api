@@ -11,9 +11,8 @@ namespace PaymentApi.Application.Dto
         public SellerDto Seller { get; set; }
         public List<ItemDto> Itens { get; set; }
 
-        public SaleDto(int id, DateTime saleTime, SaleStatus status, SellerDto seller, List<ItemDto> itens)
+        public SaleDto(DateTime saleTime, SaleStatus status, SellerDto seller, List<ItemDto> itens)
         {
-            Id = id;
             SaleTime = saleTime;
             Status = status;
             Seller = seller;
