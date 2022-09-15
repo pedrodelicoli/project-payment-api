@@ -6,11 +6,11 @@ namespace PaymentApi.Domain
     public class Sale
     {
         [Key]
-        public int Id { get; private set; }
-        public DateTime SaleTime { get; private set; }
-        public SaleStatus Status { get; private set; }
-        public Seller Seller { get; private set; }
-        public List<Item> Itens { get; private set; }
+        public int Id { get; set; }
+        public DateTime SaleTime { get; set; }
+        public SaleStatus Status { get; set; }
+        public Seller Seller { get; set; }
+        public List<Item> Itens { get; set; }
 
         public Sale(DateTime saleTime, SaleStatus status, Seller seller, List<Item> itens)
         {
