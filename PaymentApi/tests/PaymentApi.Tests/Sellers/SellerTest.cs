@@ -26,7 +26,7 @@ namespace PaymentApi.Tests.Vendedores
         public void ShouldThrowExceptions_WhenCPFIsInvalid(string invalidCpf)
         {
             Assert.Throws<ArgumentException>(() => new Seller(invalidCpf, "Pedro", "pedro@delicoli.com", "18998244525"))
-                .Message.Should().Be("O campo CPF é obrigatório!");               
+                .Message.Should().Be(ErrorMessage.errorSellerCpfIsRequired);               
         }
 
         [Theory]
@@ -35,7 +35,7 @@ namespace PaymentApi.Tests.Vendedores
         public void ShouldThrowExceptions_WhenNameIsInvalid(string invalidName)
         {
             Assert.Throws<ArgumentException>(() => new Seller("376628533809", invalidName, "pedro@delicoli.com", "18998244525"))
-                .Message.Should().Be("O campo Nome é obrigatório!");
+                .Message.Should().Be(ErrorMessage.errorSellerNameIsRequired);
         }
 
         [Theory]
@@ -44,7 +44,7 @@ namespace PaymentApi.Tests.Vendedores
         public void ShouldThrowExceptions_WhenEmailIsInvalid(string invalidEmail)
         {
             Assert.Throws<ArgumentException>(() => new Seller("376628533809", "Pedro", invalidEmail, "18998244525"))
-                .Message.Should().Be("O campo Email é obrigatório!");
+                .Message.Should().Be(ErrorMessage.errorSellerEmailIsRequired);
         }
 
         [Theory]
@@ -53,7 +53,7 @@ namespace PaymentApi.Tests.Vendedores
         public void ShouldThrowExceptions_WhenPhoneNumberIsInvalid(string invalidPhoneNumber)
         {
             Assert.Throws<ArgumentException>(() => new Seller("376628533809", "Pedro", "pedro@delicoli.com", invalidPhoneNumber))
-                .Message.Should().Be("O campo Telefone é obrigatório!");
+                .Message.Should().Be(ErrorMessage.errorSellerPhoneNumberIsRequired);
         }
     }
 }

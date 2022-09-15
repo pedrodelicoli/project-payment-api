@@ -14,9 +14,9 @@ namespace PaymentApi.Domain
 
         public Sale(DateTime saleTime, SaleStatus status, Seller seller, List<Item> itens)
         {
-            if (saleTime == new DateTime()) throw new DomainException("O campo Data é obrigatório!");
-            if (seller is null) throw new DomainException("Deve possuir um Vendedor!");
-            if (itens is null || !itens.Any() ) throw new DomainException("Um item deve ser adicionado!");
+            if (saleTime == new DateTime()) throw new DomainException(ErrorMessage.errorSaleTimeIsRequired);
+            if (seller is null) throw new DomainException(ErrorMessage.errorSaleSellerIsRequired);
+            if (itens is null || !itens.Any() ) throw new DomainException(ErrorMessage.errorSaleItemIsRequired);
 
             SaleTime = saleTime;
             Status = status;

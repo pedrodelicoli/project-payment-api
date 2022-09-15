@@ -1,4 +1,6 @@
-﻿namespace PaymentApi.Tests.Itens
+﻿using PaymentApi.Domain.Exceptions;
+
+namespace PaymentApi.Tests.Itens
 {
     public class ItemTest
     {
@@ -23,7 +25,7 @@
         public void ShouldThrowExceptions_WhenNameIsInvalid(string invalidName)
         {
             Assert.Throws<ArgumentException>(() => new Item(invalidName, 2))
-                .Message.Should().Be("O campo Nome é obrigatório!");
+                .Message.Should().Be(ErrorMessage.errorItemNameIsRequired);
         }
 
         [Theory]
@@ -32,7 +34,7 @@
         public void ShouldThrowExceptions_WhenQuantityIsInvalid(int invalidQuantity)
         {
             Assert.Throws<ArgumentException>(() => new Item("Carteira", invalidQuantity))
-                .Message.Should().Be("O campo Quantidade deve ser maior que zero!");
+                .Message.Should().Be(ErrorMessage.errorItemQuantityIsRequired);
         }
     }
     

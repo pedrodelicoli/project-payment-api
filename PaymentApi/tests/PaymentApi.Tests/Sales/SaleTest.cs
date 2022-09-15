@@ -1,4 +1,6 @@
-﻿namespace PaymentApi.Tests.Sales
+﻿using PaymentApi.Domain.Exceptions;
+
+namespace PaymentApi.Tests.Sales
 {
     public class SaleTest
     {
@@ -39,7 +41,7 @@
                 new Item("Carteira", 2)
             };
             Assert.Throws<ArgumentException>(() => new Sale(new DateTime(), SaleStatus.AguardandoPagamento, seller, itens))
-                .Message.Should().Be("O campo Data é obrigatório!");
+                .Message.Should().Be(ErrorMessage.errorSaleTimeIsRequired);
         }
 
         [Fact]
@@ -50,7 +52,7 @@
                 new Item("Carteira", 2)
             };
             Assert.Throws<ArgumentException>(() => new Sale(saleTime, SaleStatus.AguardandoPagamento, null, itens))
-                .Message.Should().Be("Deve possuir um Vendedor!");
+                .Message.Should().Be(ErrorMessage.errorSaleSellerIsRequired);
         }
 
         [Fact]
@@ -59,7 +61,7 @@
             Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
 
             Assert.Throws<ArgumentException>(() => new Sale(saleTime, SaleStatus.AguardandoPagamento, seller, null))
-                .Message.Should().Be("Um item deve ser adicionado!");
+                .Message.Should().Be(ErrorMessage.errorSaleItemIsRequired);
         }
 
         [Fact]

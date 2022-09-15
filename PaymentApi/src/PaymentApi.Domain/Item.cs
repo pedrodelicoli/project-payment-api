@@ -12,8 +12,8 @@ namespace PaymentApi.Domain
 
         public Item(string name, int quantity)
         {
-            if (string.IsNullOrEmpty(name)) throw new DomainException("O campo Nome é obrigatório!");
-            if (quantity <= 0) throw new DomainException("O campo Quantidade deve ser maior que zero!");
+            if (string.IsNullOrEmpty(name)) throw new DomainException(ErrorMessage.errorItemNameIsRequired);
+            if (quantity <= 0) throw new DomainException(ErrorMessage.errorItemQuantityIsRequired);
 
             Name = name;
             Quantity = quantity;

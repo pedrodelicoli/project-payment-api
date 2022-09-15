@@ -14,10 +14,10 @@ namespace PaymentApi.Domain
 
         public Seller(string cpf, string name, string email, string phoneNumber)
         {
-            if (string.IsNullOrEmpty(cpf)) throw new DomainException("O campo CPF é obrigatório!");
-            if (string.IsNullOrEmpty(name)) throw new DomainException("O campo Nome é obrigatório!");
-            if (string.IsNullOrEmpty(email)) throw new DomainException("O campo Email é obrigatório!");
-            if (string.IsNullOrEmpty(phoneNumber)) throw new DomainException("O campo Telefone é obrigatório!");
+            if (string.IsNullOrEmpty(cpf)) throw new DomainException(ErrorMessage.errorSellerCpfIsRequired);
+            if (string.IsNullOrEmpty(name)) throw new DomainException(ErrorMessage.errorSellerNameIsRequired);
+            if (string.IsNullOrEmpty(email)) throw new DomainException(ErrorMessage.errorSellerEmailIsRequired);
+            if (string.IsNullOrEmpty(phoneNumber)) throw new DomainException(ErrorMessage.errorSellerPhoneNumberIsRequired);
 
             Cpf = cpf;
             Name = name;
