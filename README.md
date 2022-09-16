@@ -43,10 +43,10 @@ o mock dos repositórios e do resultado do AutoMapper.
   <div>
     <h2> Pedro Delicoli </h2>
   <div style="display: flex;align-items: center;">
-    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="LinkedIn" style="width:20px;"/> https://github.com/pedrodelicoli
+    <img src=".images/github-logo.png" alt="LinkedIn" style="width:20px;"/> https://github.com/pedrodelicoli
   </div>
   <div style="display: flex;align-items: center;">
-    <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="LinkedIn" style="width:20px;"/> https://www.linkedin.com/in/pedrodelicoli/
+    <img src=".images/linkedin-logo.png" alt="LinkedIn" style="width:20px;"/> https://www.linkedin.com/in/pedrodelicoli/
   </div>
   <br/>
   Email: pedrodelicoli@hotmail.com  
