@@ -38,19 +38,14 @@ o mock dos repositórios e do resultado do AutoMapper.
 ---
 
 ## Contato
-
-<div style="display: flex; align-items: center; justify-content: space-between;">
-  <div>
-    <h2> Pedro Delicoli </h2>
-  <div style="display: flex;align-items: center;">
-    <img src=".images/github-logo.png" alt="LinkedIn" style="width:20px;"/> https://github.com/pedrodelicoli
-  </div>
-  <div style="display: flex;align-items: center;">
-    <img src=".images/linkedin-logo.png" alt="LinkedIn" style="width:20px;"/> https://www.linkedin.com/in/pedrodelicoli/
-  </div>
-  <br/>
-  Email: pedrodelicoli@hotmail.com  
-<br/>
+  
+<h2> Pedro Delicoli </h2>
+</br>
+<img src=".images/github-logo.png" alt="LinkedIn" style="h: 20px;"/> https://github.com/pedrodelicoli
+</br>
+<img src=".images/linkedin-logo.png" alt="LinkedIn" style="width: 20px;"/> https://www.linkedin.com/in/pedrodelicoli/
+</br>
+<h3> Email: pedrodelicoli@hotmail.com </h3>
 
 ---
 
