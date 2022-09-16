@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using PaymentApi.Application;
 using PaymentApi.Application.Dto;
-using PaymentApi.Domain;
 using PaymentApi.Domain.Exceptions;
 using PaymentApi.Repository.Interfaces;
 
@@ -19,6 +18,8 @@ namespace PaymentApi.Tests.Sales
         private SellerDto sellerDto;
         private List<ItemDto> itensDto;
         private SaleDto saleDto;
+        private CreateSellerDto createSellerDto;
+        private List<CreateItemDto> createItensDto;
         private CreateSaleDto createSaleDto;
         public SaleServiceTest()
         {
@@ -42,7 +43,14 @@ namespace PaymentApi.Tests.Sales
 
             saleDto = new(DateTime.Now, SaleStatus.AguardandoPagamento, sellerDto, itensDto);
 
-            createSaleDto = new(DateTime.Now, sellerDto, itensDto);
+            createSellerDto = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
+
+            createItensDto = new()
+            {
+                new CreateItemDto("Carteira", 2)
+            };
+
+            createSaleDto = new(DateTime.Now, createSellerDto, createItensDto);
         }
 
         [Fact]
@@ -210,6 +218,26 @@ namespace PaymentApi.Tests.Sales
 
             Assert.Throws<Exception>(() => saleService.Update(1, updateSale))
                 .Message.Should().Be(string.Format(ErrorMessage.errorCancelada, saleStatus));
+        }
+
+        [Theory]
+        [InlineData(SaleStatus.AguardandoPagamento)]
+        [InlineData(SaleStatus.PagamentoAprovado)]
+        [InlineData(SaleStatus.EnviadoTransportadora)]
+        [InlineData(SaleStatus.Cancelada)]
+        public void ShouldThrowsException_WhenTryUpdateCurrentStatusEntregue(SaleStatus saleStatus)
+        {
+            Sale saleTest = new(DateTime.Now, SaleStatus.Entregue, seller, itens);
+            saleRepositoryMock.Setup((s) => s.GetById(It.IsAny<int>())).Returns(saleTest);
+            Sale updatedSale = new(DateTime.Now, saleStatus, seller, itens);
+            saleRepositoryMock.Setup((s) => s.Update(It.IsAny<Sale>())).Returns(updatedSale);
+            UpdateSaleDto updateSale = new()
+            {
+                Status = saleStatus
+            };
+
+            Assert.Throws<Exception>(() => saleService.Update(1, updateSale))
+                .Message.Should().Be(string.Format(ErrorMessage.errorEntregue, saleStatus));
         }
     }
 }

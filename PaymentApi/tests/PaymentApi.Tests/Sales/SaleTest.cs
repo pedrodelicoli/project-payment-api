@@ -40,7 +40,7 @@ namespace PaymentApi.Tests.Sales
             {
                 new Item("Carteira", 2)
             };
-            Assert.Throws<ArgumentException>(() => new Sale(new DateTime(), SaleStatus.AguardandoPagamento, seller, itens))
+            Assert.Throws<ArgumentException>(() => new Sale(new DateTime(), seller, itens))
                 .Message.Should().Be(ErrorMessage.errorSaleTimeIsRequired);
         }
 
@@ -51,7 +51,7 @@ namespace PaymentApi.Tests.Sales
             {
                 new Item("Carteira", 2)
             };
-            Assert.Throws<ArgumentException>(() => new Sale(saleTime, SaleStatus.AguardandoPagamento, null, itens))
+            Assert.Throws<ArgumentException>(() => new Sale(saleTime, null, itens))
                 .Message.Should().Be(ErrorMessage.errorSaleSellerIsRequired);
         }
 
@@ -60,7 +60,7 @@ namespace PaymentApi.Tests.Sales
         {
             Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
 
-            Assert.Throws<ArgumentException>(() => new Sale(saleTime, SaleStatus.AguardandoPagamento, seller, null))
+            Assert.Throws<ArgumentException>(() => new Sale(saleTime, seller, null))
                 .Message.Should().Be(ErrorMessage.errorSaleItemIsRequired);
         }
 
@@ -69,7 +69,7 @@ namespace PaymentApi.Tests.Sales
         {
             Seller seller = new("376628533809", "Pedro", "pedro@delicoli.com", "18998244525");
 
-            Assert.Throws<ArgumentException>(() => new Sale(saleTime, SaleStatus.AguardandoPagamento, seller, new List<Item>()))
+            Assert.Throws<ArgumentException>(() => new Sale(saleTime, seller, new List<Item>()))
                 .Message.Should().Be("Um item deve ser adicionado!");
         }
     }   

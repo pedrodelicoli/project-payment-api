@@ -14,12 +14,19 @@ namespace PaymentApi.Domain
 
         public Sale(DateTime saleTime, SaleStatus status, Seller seller, List<Item> itens)
         {
-            if (saleTime == new DateTime()) throw new DomainException(ErrorMessage.errorSaleTimeIsRequired);
-            if (seller is null) throw new DomainException(ErrorMessage.errorSaleSellerIsRequired);
-            if (itens is null || !itens.Any() ) throw new DomainException(ErrorMessage.errorSaleItemIsRequired);
-
             SaleTime = saleTime;
             Status = status;
+            Seller = seller;
+            Itens = itens;
+        }
+
+        public Sale(DateTime saleTime, Seller seller, List<Item> itens)
+        {
+            if (saleTime == new DateTime()) throw new DomainException(ErrorMessage.errorSaleTimeIsRequired);
+            if (seller is null) throw new DomainException(ErrorMessage.errorSaleSellerIsRequired);
+            if (itens is null || !itens.Any()) throw new DomainException(ErrorMessage.errorSaleItemIsRequired);
+
+            SaleTime = saleTime;
             Seller = seller;
             Itens = itens;
         }
@@ -43,6 +50,8 @@ namespace PaymentApi.Domain
                 throw new Exception(string.Format(ErrorMessage.errorPagamentoAprovado, saleStatus));
             if (Status == SaleStatus.EnviadoTransportadora && (saleStatus == SaleStatus.AguardandoPagamento || saleStatus == SaleStatus.PagamentoAprovado || saleStatus == SaleStatus.Cancelada))
                 throw new Exception(string.Format(ErrorMessage.errorEnviadoTransportadora, saleStatus));
+            if (Status == SaleStatus.Entregue && saleStatus != SaleStatus.Entregue)
+                throw new Exception(string.Format(ErrorMessage.errorEntregue, saleStatus));
             if (Status == SaleStatus.Cancelada && saleStatus != SaleStatus.Cancelada)
                 throw new Exception(string.Format(ErrorMessage.errorCancelada, saleStatus));
         }

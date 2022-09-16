@@ -11,7 +11,9 @@ namespace PaymentApi.Application
             CreateMap<Sale, SaleDto>().ReverseMap();
             CreateMap<Item, ItemDto>().ReverseMap();
             CreateMap<Seller, SellerDto>().ReverseMap();
-            CreateMap<CreateSaleDto, Sale>().ReverseMap();
+            CreateMap<CreateSaleDto, Sale>();
+            CreateMap<CreateItemDto, Item>();
+            CreateMap<CreateSellerDto, Seller>();
         }
     }
 }
