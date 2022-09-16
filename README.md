@@ -48,6 +48,7 @@ o mock dos repositórios e do resultado do AutoMapper.
 ---
 
 
+
 ## INSTRUÇÕES PARA O TESTE TÉCNICO
 
 - Crie um fork deste projeto (https://gitlab.com/Pottencial/tech-test-payment-api/-/forks/new). É preciso estar logado na sua conta Gitlab;
