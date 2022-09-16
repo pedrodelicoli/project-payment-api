@@ -1,15 +1,25 @@
 ﻿using PaymentApi.Domain;
-using PaymentApi.Domain.Exceptions;
 
 namespace PaymentApi.Application.Dto
 {
     public class CreateSaleDto
     {
-        public DateTime SaleTime { get; set; }
-        public SellerDto Seller { get; set; }
-        public List<ItemDto> Itens { get; set; }
+        /// <summary>
+        /// Data da Venda
+        /// </summary>
+        public DateTime? SaleTime { get; set; }
 
-        public CreateSaleDto(DateTime saleTime, SellerDto seller, List<ItemDto> itens)
+        /// <summary>
+        /// Vendedor que realizou a venda
+        /// </summary>
+        public CreateSellerDto? Seller { get; set; }
+
+        /// <summary>
+        /// Itens que foram vendidos
+        /// </summary>
+        public List<CreateItemDto>? Itens { get; set; }
+
+        public CreateSaleDto(DateTime saleTime, CreateSellerDto seller, List<CreateItemDto> itens)
         {
             SaleTime = saleTime;
             Seller = seller;

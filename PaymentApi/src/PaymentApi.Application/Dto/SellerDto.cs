@@ -1,6 +1,4 @@
-﻿using PaymentApi.Domain.Exceptions;
-
-namespace PaymentApi.Application.Dto
+﻿namespace PaymentApi.Application.Dto
 {
     public class SellerDto
     {
