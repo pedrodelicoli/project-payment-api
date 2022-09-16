@@ -30,7 +30,11 @@ namespace PaymentApi.Api
                 );
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PottencialApi.Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentApi.Api", Version = "v1" });
+                var filePathApi = Path.Combine(AppContext.BaseDirectory, "PaymentApi.Api.xml");
+                c.IncludeXmlComments(filePathApi);
+                var filePathApplication = Path.Combine(AppContext.BaseDirectory, "PaymentApi.Application.xml");
+                c.IncludeXmlComments(filePathApplication);
             });
         }
 
@@ -40,7 +44,7 @@ namespace PaymentApi.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PottencialApi.Api v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentApi.Api v1"));
             }
 
             app.UseRouting();
